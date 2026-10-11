@@ -2,6 +2,18 @@
 
 This guide explains a small, reviewable Git workflow for `dslearn`. Git records source history; npm publishing is a separate release action.
 
+## Pull-Request-Only Policy
+
+Everyone except repository owner `Owaix` must send changes to the default branch through a pull request. `Owaix` is the only person allowed to bypass that requirement and push directly to the default branch, but should still prefer a pull request when review or discussion is useful. Contributors and maintainers other than `Owaix` must push work to a topic branch and merge through a pull request.
+
+GitHub enforces this policy with an active ruleset named **Protect master with PRs** targeting the default branch, currently `master`:
+
+1. The rule requires a pull request before merging.
+2. `Owaix` is the only actor on the bypass list; all other users, including administrators, must use pull requests.
+3. Verify that a non-`Owaix` direct push to `master` is rejected.
+
+If the default branch is renamed, update the rule's target. See [`CONTRIBUTING.md`](../CONTRIBUTING.md) for the contributor workflow.
+
 ## Check Repository State
 
 ```sh
@@ -14,7 +26,7 @@ git log --oneline -5
 
 ## Start a Change
 
-If the project has not been initialized as a Git repository yet:
+If the project has not been initialized as a Git repository yet, create its first commit locally:
 
 ```sh
 git init
@@ -23,7 +35,7 @@ git diff --cached
 git commit -m "chore: initialize dslearn repository"
 ```
 
-This is appropriate for a new, clean repository; `.gitignore` keeps generated output and dependencies out of the commit. In an existing repository, stage only the files you intend to commit as shown below.
+This is appropriate for a new, clean repository; `.gitignore` keeps generated output and dependencies out of the commit. Do not push this commit directly to the default branch. Push it on a setup branch and merge it through a pull request. In an existing repository, stage only the files you intend to commit as shown below.
 
 Create a short-lived branch for each change:
 
@@ -69,7 +81,7 @@ Skip `remote add` when `origin` already exists; use `git remote -v` to inspect i
 git push -u origin feat/describe-change
 ```
 
-The `-u` option sets the upstream branch so later pushes can use `git push`. Open a pull request against the project's default branch and include the behavior change, test results, and any compatibility impact. Do not commit directly to the shared default branch unless that is the team's policy.
+The `-u` option sets the upstream branch so later pushes can use `git push`. Everyone except `Owaix` must open a pull request against `master` and include the behavior change, test results, and any compatibility impact. `Owaix` may push directly but should prefer a PR when collaboration is useful.
 
 ## Release Tags
 
