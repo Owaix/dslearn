@@ -32,6 +32,8 @@ console.log(graph.hasPath("home", "work")); // true
 
 The complete runnable example is in [`examples/all-structures.mjs`](examples/all-structures.mjs); after building, run it with `node examples/all-structures.mjs`.
 
+To learn how the structures work together in a real flow, follow the [hands-on learning path](docs/learning-path.md) and run `npm run learn`. It wires all 13 structures into a support-desk ticket simulator.
+
 ## Data Structures
 
 ### Linear

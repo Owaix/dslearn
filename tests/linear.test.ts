@@ -19,6 +19,8 @@ describe("LinkedList", () => {
     expect(list.get(1)).toBe(3);
     expect(list.get(-1)).toBeUndefined();
     expect(list.get(1.5)).toBeUndefined();
+    expect(list.find((value) => value === 99)).toBeUndefined();
+    expect(list.removeAt(1.5)).toBeUndefined();
     expect(list.remove(3)).toBe(true);
     expect(list.removeAt(1)).toBe(2);
     expect(list.removeAt(0)).toBe(1);
@@ -47,10 +49,15 @@ describe("DoublyLinkedList", () => {
     list.append("b");
     list.prepend("a");
     list.append("d");
-    list.insertAt(2, "c");
+    expect(list.insertAt(2, "c")).toBe(true);
+    expect(list.insertAt(Number.NaN, "invalid")).toBe(false);
     expect(list.toArray()).toEqual(["a", "b", "c", "d"]);
     expect(list.get(3)).toBe("d");
+    expect(list.get(9)).toBeUndefined();
     expect(list.find((value) => value === "b")).toBe("b");
+    expect(list.find((value) => value === "missing")).toBeUndefined();
+    expect(list.contains("b")).toBe(true);
+    expect(list.contains("missing")).toBe(false);
     expect(list.remove("a")).toBe(true);
     expect(list.remove("missing")).toBe(false);
     expect(list.removeAt(2)).toBe("d");
@@ -98,6 +105,9 @@ describe("Queue", () => {
     expect(queue.size).toBe(9);
     queue.clear();
     expect(queue.dequeue()).toBeUndefined();
+    queue.enqueue(11);
+    expect(queue.peek()).toBe(11);
+    expect(queue.dequeue()).toBe(11);
     const nullable = new Queue<null | undefined>();
     nullable.enqueue(null);
     nullable.enqueue(undefined);
@@ -111,6 +121,9 @@ describe("Deque", () => {
     const deque = new Deque<number>();
     expect(deque.popFront()).toBeUndefined();
     expect(deque.popBack()).toBeUndefined();
+    expect(deque.peekFront()).toBeUndefined();
+    expect(deque.peekBack()).toBeUndefined();
+    expect(deque.isEmpty()).toBe(true);
     deque.pushBack(2);
     deque.pushFront(1);
     deque.pushBack(3);
@@ -125,5 +138,8 @@ describe("Deque", () => {
     expect(deque.popFront()).toBe(0);
     deque.clear();
     expect(deque.isEmpty()).toBe(true);
+    deque.pushFront(12);
+    expect(deque.popBack()).toBe(12);
+    expect(deque.size).toBe(0);
   });
 });

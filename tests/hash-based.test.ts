@@ -20,7 +20,12 @@ describe("HashTable", () => {
     table.clear();
     expect(table.size).toBe(0);
     expect([...table]).toEqual([]);
+    table.set("after-clear", 5);
+    expect(table.get("after-clear")).toBe(5);
     expect(() => new HashTable(0)).toThrow(RangeError);
+    const invalidHash = new HashTable<string, number>(2, () => Number.POSITIVE_INFINITY);
+    expect(() => invalidHash.set("x", 1)).toThrow(RangeError);
+    expect(() => invalidHash.get("x")).toThrow(RangeError);
   });
 
   it("supports primitive keys, SameValueZero, symbols, and object identity", () => {
@@ -47,9 +52,16 @@ describe("PriorityQueue", () => {
     );
     expect(queue.dequeue()).toBeUndefined();
     expect(queue.peek()).toBeUndefined();
-    queue.enqueue({ priority: 2, label: "later" });
-    queue.enqueue({ priority: 1, label: "first" });
-    queue.enqueue({ priority: 1, label: "second" });
+    const later = { priority: 2, label: "later" };
+    const first = { priority: 1, label: "first" };
+    const second = { priority: 1, label: "second" };
+    queue.enqueue(later);
+    queue.enqueue(first);
+    queue.enqueue(second);
+    expect([...queue]).toHaveLength(3);
+    expect([...queue]).toContain(later);
+    expect([...queue]).toContain(first);
+    expect([...queue]).toContain(second);
     expect(queue.peek()?.label).toBe("first");
     expect(queue.dequeue()?.label).toBe("first");
     expect(queue.dequeue()?.label).toBe("second");
@@ -79,6 +91,7 @@ describe("DisjointSet", () => {
     expect(set.size).toBe(3);
     set.clear();
     expect(set.size).toBe(0);
+    expect(set.has(1)).toBe(false);
   });
 
   it("allows undefined as a value when membership exists", () => {

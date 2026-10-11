@@ -30,6 +30,7 @@ describe("Trie", () => {
 describe("Graph", () => {
   it("traverses undirected weighted graphs and removes edges and vertices", () => {
     const graph = new Graph<string>();
+    expect(graph.getNeighbors("missing")).toEqual([]);
     expect(graph.addVertex("a")).toBe(true);
     expect(graph.addVertex("a")).toBe(false);
     graph.addEdge("a", "b", 2);

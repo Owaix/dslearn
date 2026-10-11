@@ -67,6 +67,10 @@ describe("heaps", () => {
 
   it("maintains max-heap order and accepts a custom comparator", () => {
     const heap = new MaxHeap<{ rank: number }>((a, b) => a.rank - b.rank);
+    expect(heap.peek()).toBeUndefined();
+    expect(heap.extractMax()).toBeUndefined();
+    expect(heap.isEmpty()).toBe(true);
+    expect(heap.size).toBe(0);
     heap.insert({ rank: 2 });
     heap.insert({ rank: 7 });
     heap.insert({ rank: 4 });
@@ -74,5 +78,10 @@ describe("heaps", () => {
     expect(heap.peek()?.rank).toBe(4);
     expect(heap.extractMax()?.rank).toBe(4);
     expect(heap.extractMax()?.rank).toBe(2);
+    expect(heap.isEmpty()).toBe(true);
+    heap.insert({ rank: 1 });
+    heap.clear();
+    expect(heap.size).toBe(0);
+    expect(heap.isEmpty()).toBe(true);
   });
 });
