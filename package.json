@@ -1,8 +1,16 @@
 {
   "name": "dslearn",
-  "version": "1.0.0",
-  "description": "Reusable, typed implementations of common data structures for JavaScript and TypeScript.",
+  "version": "1.0.2",
+  "description": "Beginner-friendly JavaScript and TypeScript data structures with clear APIs and hands-on learning examples.",
   "author": "imowaix",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Owaix/dslearn.git"
+  },
+  "homepage": "https://owaix.github.io/dslearn/",
+  "bugs": {
+    "url": "https://github.com/Owaix/dslearn/issues"
+  },
   "license": "MIT",
   "type": "module",
   "engines": {

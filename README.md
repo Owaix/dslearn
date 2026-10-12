@@ -1,6 +1,8 @@
 # dslearn
 
-`dslearn` is a dependency-free-at-runtime collection of generic, reusable data structures for JavaScript and TypeScript. The package ships native ESM JavaScript and TypeScript declarations. Maintained by `imowaix`.
+Learn data structures by using them. A data structure is a way to organize information so a program can store, find, and change it. `dslearn` gives beginners clear JavaScript and TypeScript classes to try, with methods such as `push`, `pop`, `enqueue`, `search`, and `insert`. Explore lists, stacks, queues, hash tables, trees, heaps, tries, and graphs through small examples and a hands-on learning project.
+
+[Website & documentation](https://owaix.github.io/dslearn/)
 
 ## Installation
 
