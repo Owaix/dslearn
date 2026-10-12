@@ -1,0 +1,12 @@
+{
+  "name": "dslearn-documentation",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "devDependencies": {
+    "lucide": "^1.55.0",
+    "marked": "^17.0.1"
+  }
+}
