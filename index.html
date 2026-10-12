@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Learn data structures by writing code. dslearn documentation, examples, and interactive exercises by imowaix."
+    />
+    <title>dslearn | Learn by building</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#start">dslearn<span class="brand-dot">.</span></a>
+      <span class="top-label">DATA STRUCTURES / LEARN BY BUILDING</span>
+      <nav aria-label="External links">
+        <a href="https://www.npmjs.com/package/dslearn">npm ↗</a
+        ><a href="https://github.com/Owaix/dslearn">GitHub ↗</a>
+      </nav>
+    </header>
+    <div class="layout">
+      <aside id="sidebar">
+        <nav aria-label="Documentation" id="navigation">
+          <span class="nav-label">START HERE</span>
+          <a href="#start">Overview</a><a href="#playground">Code examples</a
+          ><a href="#learning">Learning path</a>
+          <span class="nav-label">DOCUMENTATION</span>
+          <a href="#reference">Package & API</a><a href="#contributing">Contributing</a
+          ><a href="#git">Git workflow</a><a href="#publishing">npm publishing</a
+          ><a href="#changelog">Changelog</a><a href="#license">License</a>
+          <span class="nav-label">THE DEVELOPER</span><a href="#about">About & contact</a>
+        </nav>
+        <p id="search-empty" hidden>No matching pages.</p>
+        <a class="sidebar-footer" href="https://github.com/Owaix/dslearn/issues"
+          >Found a problem? Open an issue ↗</a
+        >
+      </aside>
+      <main id="content">
+        <section id="start" class="document">
+          <div class="intro">
+            <p class="eyebrow">SMALL METHODS. BIG IDEAS.</p>
+            <h1>dslearn</h1>
+            <p class="lead">Learn data structures<br />by using them.</p>
+            <p class="intro-copy">
+              Organize information. Find what matters. Build something that works. Clear JavaScript
+              and TypeScript classes for your next learning project.
+            </p>
+            <div class="intro-actions">
+              <a class="primary" href="#playground">Start coding <span>→</span></a
+              ><a href="#reference">Explore the API →</a>
+            </div>
+            <div class="install">
+              <code>npm install dslearn</code>
+            </div>
+            <p id="copy-status" role="status"></p>
+            <div class="structure-art" aria-label="A queue with three values">
+              <span class="art-label">QUEUE / FIRST IN, FIRST OUT</span>
+              <div><b>12</b><span>→</span><b>24</b><span>→</span><b>36</b></div>
+              <span class="art-caption">enqueue. peek. dequeue.</span>
+            </div>
+          </div>
+          <div class="facts">
+            <div><strong>13</strong><span>data structures</span></div>
+            <div><strong>TypeScript</strong><span>generics included</span></div>
+            <div><strong>Zero</strong><span>runtime dependencies</span></div>
+          </div>
+          <section class="overview-section">
+            <p class="eyebrow">YOUR TOOLBOX</p>
+            <h2>Choose the shape of your data.</h2>
+            <div class="toolbox">
+              <a href="#reference"
+                ><span>01 / LINEAR</span>
+                <h3>Keep things in order</h3>
+                <p>LinkedList, DoublyLinkedList, Stack, Queue, Deque</p></a
+              ><a href="#reference"
+                ><span>02 / LOOKUP & PRIORITY</span>
+                <h3>Find, rank, group</h3>
+                <p>HashTable, PriorityQueue, DisjointSet</p></a
+              ><a href="#reference"
+                ><span>03 / TREES</span>
+                <h3>Sort and search</h3>
+                <p>BinarySearchTree, MinHeap, MaxHeap, Trie</p></a
+              ><a href="#reference"
+                ><span>04 / CONNECTIONS</span>
+                <h3>Follow a path</h3>
+                <p>Graph: vertices, edges, BFS and DFS</p></a
+              >
+            </div>
+          </section>
+          <section class="overview-section">
+            <p class="eyebrow">ONE PROJECT. ALL THE PIECES.</p>
+            <h2>Build a support desk.</h2>
+            <p>
+              Follow a ticket through arrival order, urgent work, agent rotation, topic search, and
+              undo. Discover why each structure belongs in the flow.
+            </p>
+            <a href="#learning">Open the hands-on learning path →</a>
+          </section>
+        </section>
+        <section id="playground" class="document">
+          <p class="eyebrow">TRY THE ACTUAL PACKAGE</p>
+          <h1>Code examples</h1>
+          <p>Explore all 13 structures in this runnable JavaScript example.</p>
+          <pre><code>import {
+  BinarySearchTree,
+  Deque,
+  DisjointSet,
+  DoublyLinkedList,
+  Graph,
+  HashTable,
+  LinkedList,
+  MaxHeap,
+  MinHeap,
+  PriorityQueue,
+  Queue,
+  Stack,
+  Trie,
+} from "../dist/index.js";
+
+const list = new LinkedList();
+list.append("second");
+list.prepend("first");
+console.log("LinkedList", list.toArray());
+
+const doublyLinkedList = new DoublyLinkedList();
+doublyLinkedList.append(1);
+doublyLinkedList.append(2);
+console.log("DoublyLinkedList", [...doublyLinkedList]);
+
+const stack = new Stack();
+stack.push("bottom");
+stack.push("top");
+console.log("Stack pop", stack.pop());
+
+const queue = new Queue();
+queue.enqueue("first");
+queue.enqueue("second");
+console.log("Queue dequeue", queue.dequeue());
+
+const deque = new Deque();
+deque.pushFront(2);
+deque.pushFront(1);
+deque.pushBack(3);
+console.log("Deque", [...deque]);
+
+const table = new HashTable();
+table.set("language", "TypeScript");
+console.log("HashTable", table.get("language"));
+
+const priorityQueue = new PriorityQueue((left, right) => left.priority - right.priority);
+priorityQueue.enqueue({ priority: 2, task: "later" });
+priorityQueue.enqueue({ priority: 1, task: "sooner" });
+console.log("PriorityQueue", priorityQueue.dequeue());
+
+const sets = new DisjointSet();
+sets.add("north");
+sets.add("south");
+sets.union("north", "south");
+console.log("DisjointSet connected", sets.connected("north", "south"));
+
+const tree = new BinarySearchTree((left, right) => left - right);
+[5, 3, 7].forEach((value) => tree.insert(value));
+console.log("BinarySearchTree", tree.inOrderTraversal());
+
+const minHeap = new MinHeap();
+[5, 1, 3].forEach((value) => minHeap.insert(value));
+console.log("MinHeap minimum", minHeap.extractMin());
+
+const maxHeap = new MaxHeap();
+[5, 1, 3].forEach((value) => maxHeap.insert(value));
+console.log("MaxHeap maximum", maxHeap.extractMax());
+
+const trie = new Trie();
+trie.insert("structure");
+trie.insert("strong");
+console.log("Trie prefix", trie.wordsWithPrefix("str"));
+
+const graph = new Graph();
+graph.addEdge("A", "B");
+graph.addEdge("B", "C");
+console.log("Graph BFS", graph.bfs("A"));
+</code></pre>
+        </section>
+        <article id="reference" class="document" aria-label="Package & API"><h1>dslearn</h1>
+<p>Learn data structures by using them. A data structure is a way to organize information so a program can store, find, and change it. <code>dslearn</code> gives beginners clear JavaScript and TypeScript classes to try, with methods such as <code>push</code>, <code>pop</code>, <code>enqueue</code>, <code>search</code>, and <code>insert</code>. Explore lists, stacks, queues, hash tables, trees, heaps, tries, and graphs through small examples and a hands-on learning project.</p>
+<p><a href="https://owaix.github.io/dslearn/">Website &amp; documentation</a></p>
+<h2>Installation</h2>
+<pre><code class="language-sh">npm install dslearn
+</code></pre>
+<p>The published library requires Node.js 18 or newer. The development test runner (Vitest 4) requires Node.js 20 or newer.</p>
+<h2>Quick Start</h2>
+<pre><code class="language-ts">import { LinkedList, Graph, MinHeap } from &quot;dslearn&quot;;
+
+const names = new LinkedList&lt;string&gt;();
+names.append(&quot;Ada&quot;);
+names.prepend(&quot;Grace&quot;);
+console.log(names.toArray()); // [&quot;Grace&quot;, &quot;Ada&quot;]
+
+const jobs = new MinHeap&lt;number&gt;();
+jobs.insert(8);
+jobs.insert(3);
+console.log(jobs.extractMin()); // 3
+
+const graph = new Graph&lt;string&gt;();
+graph.addEdge(&quot;home&quot;, &quot;work&quot;);
+console.log(graph.hasPath(&quot;home&quot;, &quot;work&quot;)); // true
+</code></pre>
+<p>The complete runnable example is in <a href="https://github.com/Owaix/dslearn/blob/master/examples/all-structures.mjs"><code>examples/all-structures.mjs</code></a>; after building, run it with <code>node examples/all-structures.mjs</code>.</p>
+<p>To learn how the structures work together in a real flow, follow the <a href="#learning">hands-on learning path</a> and run <code>npm run learn</code>. It wires all 13 structures into a support-desk ticket simulator.</p>
+<h2>Data Structures</h2>
+<h3>Linear</h3>
+<pre><code class="language-ts">import { LinkedList, DoublyLinkedList, Stack, Queue, Deque } from &quot;dslearn&quot;;
+
+const list = new LinkedList&lt;number&gt;();
+list.append(10);
+list.insertAt(0, 5);
+list.removeAt(1); // 10
+
+const doubly = new DoublyLinkedList&lt;string&gt;();
+doubly.append(&quot;first&quot;);
+doubly.prepend(&quot;new first&quot;);
+
+const stack = new Stack&lt;string&gt;();
+stack.push(&quot;bottom&quot;);
+stack.push(&quot;top&quot;);
+stack.pop(); // &quot;top&quot;
+
+const queue = new Queue&lt;number&gt;();
+queue.enqueue(1);
+queue.dequeue(); // 1
+
+const deque = new Deque&lt;number&gt;();
+deque.pushFront(2);
+deque.pushBack(3);
+deque.popFront(); // 2
+</code></pre>
+<p><code>LinkedList&lt;T&gt;</code> and <code>DoublyLinkedList&lt;T&gt;</code> provide <code>append</code>, <code>prepend</code>, <code>insertAt</code>, <code>remove</code>, <code>removeAt</code>, <code>find</code>, <code>contains</code>, <code>get</code>, <code>clear</code>, <code>toArray</code>, <code>size</code>, and iteration. Insertions return <code>true</code> on success and <code>false</code> for an invalid index. <code>remove</code> returns whether a match was removed; <code>removeAt</code> and <code>get</code> return <code>undefined</code> for invalid indexes. <code>find(predicate)</code> returns the first matching value or <code>undefined</code> when no item matches. Equality for <code>remove</code> and <code>contains</code> is <code>Object.is</code>, and <code>remove</code> removes only the first match. Iteration follows head-to-tail order.</p>
+<p><code>Stack&lt;T&gt;</code> provides <code>push</code>, <code>pop</code>, <code>peek</code>, <code>isEmpty</code>, <code>clear</code>, <code>size</code>, and iteration (top to bottom). <code>Queue&lt;T&gt;</code> provides <code>enqueue</code>, <code>dequeue</code>, <code>peek</code>, <code>isEmpty</code>, <code>clear</code>, <code>size</code>, and iteration (front to back). Empty <code>pop</code>, <code>peek</code>, and <code>dequeue</code> operations return <code>undefined</code>. Queue storage is a growable circular buffer.</p>
+<p><code>Deque&lt;T&gt;</code> provides <code>pushFront</code>, <code>pushBack</code>, <code>popFront</code>, <code>popBack</code>, <code>peekFront</code>, <code>peekBack</code>, <code>isEmpty</code>, <code>clear</code>, <code>size</code>, and front-to-back iteration. Empty pops and peeks return <code>undefined</code>. Its circular buffer grows geometrically.</p>
+<h3>Hash-Based</h3>
+<pre><code class="language-ts">import { HashTable, PriorityQueue, DisjointSet } from &quot;dslearn&quot;;
+
+const scores = new HashTable&lt;string, number&gt;();
+scores.set(&quot;Ada&quot;, 98);
+scores.get(&quot;Ada&quot;); // 98
+
+type Job = { priority: number; name: string };
+const jobs = new PriorityQueue&lt;Job&gt;((a, b) =&gt; a.priority - b.priority);
+jobs.enqueue({ priority: 1, name: &quot;urgent&quot; });
+jobs.dequeue()?.name; // &quot;urgent&quot;
+
+const groups = new DisjointSet&lt;string&gt;();
+groups.add(&quot;A&quot;);
+groups.add(&quot;B&quot;);
+groups.union(&quot;A&quot;, &quot;B&quot;);
+groups.connected(&quot;A&quot;, &quot;B&quot;); // true
+</code></pre>
+<p><code>HashTable&lt;K, V&gt;</code> provides <code>set</code>, <code>get</code>, <code>has</code>, <code>delete</code>, <code>clear</code>, <code>keys</code>, <code>values</code>, <code>entries</code>, <code>size</code>, and <code>[Symbol.iterator]</code> (entries). <code>set</code> updates an existing key and returns the table. <code>get</code> returns <code>undefined</code> for a missing key; use <code>has</code> to distinguish a stored <code>undefined</code> value. <code>delete</code> reports whether a key existed. Its constructor is <code>new HashTable&lt;K, V&gt;(initialCapacity = 16, hashFunction?)</code>; capacity must be a positive integer. It uses separate-chaining buckets, resizes above a 0.75 load factor, and defaults to SameValueZero key equality. Primitive keys are supported. Object and function keys use reference identity, not structural equality. Symbols use symbol identity. A custom hash function must return a stable finite number for each key; equal keys must produce equal hashes. Collisions are resolved within buckets.</p>
+<p><code>PriorityQueue&lt;T&gt;</code> provides <code>enqueue</code>, <code>dequeue</code>, <code>peek</code>, <code>isEmpty</code>, <code>clear</code>, <code>size</code>, and iteration (heap-array order, not sorted order). The constructor accepts a comparator where a negative result means the left item has higher priority; ties are dequeued in insertion order. Empty <code>dequeue</code> and <code>peek</code> return <code>undefined</code>. The default comparator uses JavaScript <code>&lt;</code>; provide a comparator for objects or domain-specific ordering.</p>
+<p><code>DisjointSet&lt;T&gt;</code> provides <code>add</code>, <code>has</code>, <code>find</code>, <code>union</code>, <code>connected</code>, <code>clear</code>, and <code>size</code>. <code>add</code> reports whether a new value was added. <code>find</code> returns a representative or <code>undefined</code> if absent; <code>has</code> disambiguates an absent value from an inserted <code>undefined</code>. <code>union</code> returns <code>true</code> only when it joins two existing components; it returns <code>false</code> when either value is missing or they are already connected. <code>connected</code> is false if either item is absent. Values use JavaScript <code>Map</code> key equality (SameValueZero).</p>
+<h3>Trees and Trie</h3>
+<pre><code class="language-ts">import { BinarySearchTree, MinHeap, MaxHeap, Trie } from &quot;dslearn&quot;;
+
+const byAge = new BinarySearchTree&lt;{ name: string; age: number }&gt;((a, b) =&gt; a.age - b.age);
+byAge.insert({ name: &quot;Ada&quot;, age: 36 });
+byAge.inOrderTraversal();
+
+const min = new MinHeap&lt;number&gt;();
+const max = new MaxHeap&lt;number&gt;();
+min.insert(4);
+max.insert(4);
+
+const words = new Trie();
+words.insert(&quot;structure&quot;);
+words.startsWith(&quot;str&quot;); // true
+words.wordsWithPrefix(&quot;str&quot;); // [&quot;structure&quot;]
+</code></pre>
+<p><code>BinarySearchTree&lt;T&gt;</code> provides <code>insert</code>, <code>search</code>, <code>contains</code>, <code>delete</code>, <code>inOrderTraversal</code>, <code>preOrderTraversal</code>, <code>postOrderTraversal</code>, <code>levelOrderTraversal</code>, <code>clear</code>, and <code>size</code>. Its comparator defaults to JavaScript <code>&lt;</code>. Comparator-equal duplicates are ignored (<code>insert</code> returns <code>false</code>); successful insertions and deletions return <code>true</code>. <code>search</code> returns the stored value or <code>undefined</code>, while <code>contains</code> avoids that ambiguity. Traversals return new arrays. A plain BST can become unbalanced; recursive insertion, deletion, and depth-first traversals may reach call-stack limits for extremely skewed trees.</p>
+<p><code>MinHeap&lt;T&gt;</code> provides <code>insert</code>, <code>peek</code>, <code>extractMin</code>, <code>isEmpty</code>, <code>clear</code>, and <code>size</code>. <code>MaxHeap&lt;T&gt;</code> offers the same API with <code>extractMax</code>. Both accept a comparator and return <code>undefined</code> from an empty peek or extraction.</p>
+<p><code>Trie</code> stores case-sensitive strings and provides <code>insert</code>, <code>search</code>, <code>contains</code>, <code>startsWith</code>, <code>wordsWithPrefix</code>, <code>delete</code>, <code>clear</code>, and <code>size</code>. Insert and delete return whether the set of stored words changed. The empty string is a valid word and prefix. <code>startsWith(&quot;&quot;)</code> is always true, including for an empty trie. Prefix results are returned in child insertion order.</p>
+<h3>Graph</h3>
+<pre><code class="language-ts">import { Graph } from &quot;dslearn&quot;;
+
+const graph = new Graph&lt;string&gt;(); // undirected by default
+graph.addEdge(&quot;A&quot;, &quot;B&quot;, 2);
+graph.addEdge(&quot;B&quot;, &quot;C&quot;);
+graph.bfs(&quot;A&quot;); // [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]
+graph.hasPath(&quot;A&quot;, &quot;C&quot;); // true
+
+const directed = new Graph&lt;string&gt;(true);
+directed.addEdge(&quot;source&quot;, &quot;target&quot;);
+</code></pre>
+<p><code>Graph&lt;T&gt;</code> uses adjacency lists and provides <code>addVertex</code>, <code>addEdge</code>, <code>removeVertex</code>, <code>removeEdge</code>, <code>getNeighbors</code>, <code>bfs</code>, <code>dfs</code>, <code>hasPath</code>, and <code>size</code>. <code>addVertex</code> and removal methods return booleans. <code>addEdge</code> creates missing vertices and returns <code>void</code>; its optional weight defaults to <code>1</code> and must be finite. Re-adding an edge updates its weight. Undirected edges are stored in both directions; self-loops are allowed. The constructor&#39;s <code>directed</code> option defaults to <code>false</code>. <code>getNeighbors</code> returns a new array of <code>{ vertex, weight }</code> records and returns <code>[]</code> for a missing vertex. BFS and DFS return visit-order arrays and return <code>[]</code> for a missing start; both visit only the start&#39;s reachable component. <code>hasPath</code> is false if either vertex is missing, and true for a vertex&#39;s path to itself if it exists.</p>
+<h2>API Return and Edge-Case Behavior</h2>
+<ul>
+<li>Methods that remove or search by value generally return <code>boolean</code> when absence must be distinguishable; value-returning <code>get</code>/<code>peek</code>/<code>pop</code>/<code>dequeue</code> methods use <code>undefined</code> for absence. If <code>undefined</code> itself is a valid stored value, use a membership method (<code>has</code>, <code>contains</code>, or <code>size</code>) when available to distinguish it.</li>
+<li>List indexes must be integers. <code>insertAt</code> permits indexes from <code>0</code> through <code>size</code>; retrieval/removal require indexes from <code>0</code> through <code>size - 1</code>. Invalid indexes do not mutate the list.</li>
+<li>List and graph values can include <code>null</code> or <code>undefined</code>; JavaScript equality rules apply as described per structure. Custom-object list matching uses identity via <code>Object.is</code>.</li>
+<li>Hash-table object keys compare by reference. To use structural object keys, supply a stable custom hash strategy and use primitive canonical keys, or wrap the object in an identity-aware key chosen by the application. A custom hash function still relies on SameValueZero equality.</li>
+<li>Ordered structures require a consistent comparator (negative, zero, positive). The default comparator is suitable for consistently ordered primitive values; use custom comparators for records and mixed/domain-specific ordering.</li>
+<li>Duplicate list items are allowed; list <code>remove</code> removes the first. Hash-table duplicate keys replace values. BST and Trie duplicate insertion is ignored. Graph duplicate edges update weights. Priority-queue ties remain stable.</li>
+</ul>
+<h2>Complexity</h2>
+<table>
+<thead>
+<tr>
+<th>Structure / operation</th>
+<th>Expected time</th>
+<th>Extra space</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Linked-list append/prepend</td>
+<td>O(1)</td>
+<td>O(1) per node</td>
+</tr>
+<tr>
+<td>Linked-list indexed access/insert/remove/search</td>
+<td>O(n)</td>
+<td>O(1) excluding returned arrays</td>
+</tr>
+<tr>
+<td>Doubly-linked-list append/prepend</td>
+<td>O(1)</td>
+<td>O(1) per node</td>
+</tr>
+<tr>
+<td>Doubly-linked-list indexed access/insert/remove/search</td>
+<td>O(n)</td>
+<td>O(1) excluding returned arrays</td>
+</tr>
+<tr>
+<td>Stack push/pop/peek</td>
+<td>O(1)</td>
+<td>O(1) per node</td>
+</tr>
+<tr>
+<td>Queue enqueue/dequeue/peek</td>
+<td>Amortized O(1); resize O(n)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>Deque endpoint operations</td>
+<td>Amortized O(1); resize O(n)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>Hash-table get/set/delete</td>
+<td>Expected O(1), worst O(n)</td>
+<td>O(capacity + entries)</td>
+</tr>
+<tr>
+<td>Hash-table iteration</td>
+<td>O(capacity + entries)</td>
+<td>O(1) excluding yielded entries</td>
+</tr>
+<tr>
+<td>Priority-queue enqueue/dequeue</td>
+<td>O(log n)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>Priority-queue peek</td>
+<td>O(1)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>Disjoint-set find/union</td>
+<td>Amortized O(α(n))</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>BST operations</td>
+<td>Average O(log n), worst O(n)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>Heap insert/extract</td>
+<td>O(log n)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>Heap peek</td>
+<td>O(1)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>Trie operation on a string of length L</td>
+<td>O(L), excluding output</td>
+<td>O(total characters)</td>
+</tr>
+<tr>
+<td>Trie wordsWithPrefix</td>
+<td>O(P + returned text)</td>
+<td>O(returned text)</td>
+</tr>
+<tr>
+<td>Graph add-edge/get-neighbors</td>
+<td>Expected O(1) / O(degree)</td>
+<td>O(V + E)</td>
+</tr>
+<tr>
+<td>Graph BFS/DFS/hasPath</td>
+<td>O(V + E)</td>
+<td>O(V)</td>
+</tr>
+<tr>
+<td>Graph remove-vertex</td>
+<td>O(V + degree)</td>
+<td>O(1)</td>
+</tr>
+</tbody></table>
+<p>Here <code>n</code> is the number of stored items, <code>V</code> vertices, <code>E</code> stored adjacency entries, <code>L</code> string length, <code>P</code> prefix length, and <code>α</code> the inverse Ackermann function. Hash-table bounds assume a well-distributed hash; adversarial collisions degrade operations to linear time. Graph <code>E</code> counts both stored directions for undirected edges.</p>
+<h2>Development</h2>
+<pre><code class="language-sh">npm install
+npm test
+npm run build
+npm run lint
+npm run format:check
+npm run benchmark
+</code></pre>
+<p>Benchmarks are informational microbenchmarks, not performance guarantees. They compare operations with compatible built-in operations and depend on the runtime and machine.</p>
+<h2>Contributing</h2>
+<p>Keep changes focused, add tests for public behavior and edge cases, and run <code>npm run validate</code> before opening a pull request. Public API or behavior changes should be documented in this README and the changelog.</p>
+<p>See <a href="#publishing">the npm publishing guide</a> for release steps and <a href="#git">the Git guide</a> for repository workflow and command explanations.</p>
+<h2>License</h2>
+<p>MIT. See <a href="#license"><code>LICENSE</code></a>.</p>
+</article>
+<article id="learning" class="document" aria-label="Learning path"><h1>Data Structures Learning Path</h1>
+<p>Learn the structures by following a support ticket from intake to assignment. The runnable version is <a href="https://github.com/Owaix/dslearn/blob/master/examples/support-desk.mjs"><code>examples/support-desk.mjs</code></a>; start it with:</p>
+<pre><code class="language-sh">npm run learn
+</code></pre>
+<p>The script prints the result of each part of the workflow. Read it top to bottom, change one structure at a time, and rerun it.</p>
+<h2>The Ticket Flow</h2>
+<pre><code class="language-mermaid">flowchart LR
+  A[New tickets] --&gt; B[Queue: preserve arrival order]
+  B --&gt; C[Priority queue: urgent work first]
+  C --&gt; D[Deque: rotate available agents]
+  D --&gt; E[Hash table: lookup by ticket ID]
+  D --&gt; F[Stack: undo last assignment]
+  D --&gt; G[Linked lists: assignment/event history]
+  E --&gt; H[BST: tickets in ID order]
+  A --&gt; I[Heaps: next deadline and highest severity]
+  A --&gt; J[Trie: topic prefix search]
+  A --&gt; K[Graph: office routes]
+  A --&gt; L[Disjoint set: related system incidents]
+</code></pre>
+<h2>Step 1: Choose the Right Structure</h2>
+<p>The same ticket appears in more than one structure because each structure answers a different question:</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Structure</th>
+<th>Why it fits</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Which ticket arrived first?</td>
+<td><code>Queue&lt;Ticket&gt;</code></td>
+<td>FIFO order, with efficient front removal.</td>
+</tr>
+<tr>
+<td>Which ticket is most urgent?</td>
+<td><code>PriorityQueue&lt;Ticket&gt;</code></td>
+<td>The comparator ranks severity; equal priorities remain stable.</td>
+</tr>
+<tr>
+<td>Which agent is next, and who can be rotated?</td>
+<td><code>Deque&lt;Agent&gt;</code></td>
+<td>Add and remove agents at either end.</td>
+</tr>
+<tr>
+<td>Find a ticket when its ID is known</td>
+<td><code>HashTable&lt;string, Ticket&gt;</code></td>
+<td>Expected constant-time lookup by key.</td>
+</tr>
+<tr>
+<td>Undo the most recent assignment</td>
+<td><code>Stack&lt;Assignment&gt;</code></td>
+<td>LIFO naturally reverses the last action first.</td>
+</tr>
+<tr>
+<td>Keep assignment and event history</td>
+<td><code>LinkedList</code> and <code>DoublyLinkedList</code></td>
+<td>Append events and inspect or remove positions.</td>
+</tr>
+<tr>
+<td>List tickets in ID order</td>
+<td><code>BinarySearchTree&lt;Ticket&gt;</code></td>
+<td>In-order traversal visits comparator order.</td>
+</tr>
+<tr>
+<td>Find the next SLA deadline / highest severity</td>
+<td><code>MinHeap&lt;number&gt;</code> / <code>MaxHeap&lt;number&gt;</code></td>
+<td>Read the smallest or largest value efficiently.</td>
+</tr>
+<tr>
+<td>Find topics by prefix</td>
+<td><code>Trie</code></td>
+<td>Prefix lookup follows only the requested character path.</td>
+</tr>
+<tr>
+<td>Check whether two offices are connected</td>
+<td><code>Graph&lt;Office&gt;</code></td>
+<td>BFS-based path search over adjacency lists.</td>
+</tr>
+<tr>
+<td>Group systems affected by one incident</td>
+<td><code>DisjointSet&lt;System&gt;</code></td>
+<td>Efficiently merge and compare connected groups.</td>
+</tr>
+</tbody></table>
+<h2>Step 2: Trace One Ticket</h2>
+<p>Open the example and follow <code>newTickets</code>. Each ticket is enqueued for arrival order, indexed by ID, inserted into the ID tree, and used to update deadline/severity summaries and topic search.</p>
+<p>Then inspect the two loops:</p>
+<ol>
+<li>Arrival queue entries are transferred to the priority queue. This changes the order policy from “first arrived” to “most severe first.”</li>
+<li>Each selected ticket takes the next agent from the front of the deque. That agent goes to the back, so the next ticket gets a fair turn.</li>
+<li>Before changing ticket status, the previous state is pushed to the assignment stack. The event and ticket ID are appended to linked-list histories.</li>
+<li>The final operation pops one assignment and restores its previous ticket state.</li>
+</ol>
+<p>The output is deterministic. The assignments begin <code>HD-101</code>, <code>HD-102</code>, <code>HD-103</code>, even though <code>HD-103</code> arrived first, because severity determines triage order.</p>
+<h2>Step 3: Make a Change</h2>
+<p>Try these small exercises in the example, then run <code>npm run learn</code> again:</p>
+<ol>
+<li>Add a severity-5 ticket and observe where it appears. If it ties with another ticket, check which was enqueued first.</li>
+<li>Change <code>availableAgents</code> to add an agent at the front. Trace how rotation changes.</li>
+<li>Add a disconnected office to <code>officeRoutes</code>; <code>hasPath</code> should remain false until an edge connects it.</li>
+<li>Add another system to the Wi-Fi incident with <code>affectedSystems.union</code>, then compare it with <code>connected</code>.</li>
+<li>Search the trie for a topic prefix that is not present. Add the topic and rerun.</li>
+<li>Add a ticket with an ID between existing IDs and inspect the in-order BST result.</li>
+<li>Undo twice. Decide what should happen when the stack is empty before changing the code.</li>
+<li>Replace the severity comparator with a deadline comparator. Explain how that changes the scheduler policy.</li>
+</ol>
+<h2>Step 4: Verify the Contracts</h2>
+<p>The Vitest suite exercises normal, empty, duplicate, invalid-index, collision, comparator, traversal, and removal behavior across the public classes:</p>
+<pre><code class="language-sh">npm test
+npm run validate
+</code></pre>
+<p>When changing the lesson, add a test for the behavior you expect. In particular, test both a successful operation and its missing/empty counterpart; the return values are part of the data structure contract.</p>
+<h2>Keep Exploring</h2>
+<p>Use the <a href="../README.md#data-structures">API reference</a> for each method&#39;s exact return behavior and the <a href="../README.md#complexity">complexity table</a> to compare tradeoffs. The data structure that makes one operation simple may make another one slower; choosing well starts with asking what questions the application needs to answer.</p>
+</article>
+<article id="contributing" class="document" aria-label="Contributing"><h1>Contributing to dslearn</h1>
+<h2>Required: Use Pull Requests</h2>
+<p>Everyone except the repository owner <code>Owaix</code> must submit changes to the default branch through a pull request. Only <code>Owaix</code> may bypass the pull-request requirement and push directly to the default branch. <code>Owaix</code> should still prefer pull requests when review or discussion is useful.</p>
+<p>An active GitHub ruleset named <strong>Protect master with PRs</strong> targets the default branch, currently <code>master</code>:</p>
+<ul>
+<li>Require a pull request before merging.</li>
+<li><code>Owaix</code> is the only bypass actor; everyone else, including administrators, must use a pull request.</li>
+<li>Verify that a non-<code>Owaix</code> direct push to <code>master</code> is rejected.</li>
+</ul>
+<p>Update the ruleset target if the default branch is renamed. The ruleset is enforced by GitHub; this document records the policy.</p>
+<h2>Change Workflow</h2>
+<pre><code class="language-sh">git switch -c feat/short-description
+npm ci
+npm run validate
+git add &lt;intended-files&gt;
+git diff --cached
+git commit -m &quot;feat: describe the change&quot;
+git push -u origin feat/short-description
+</code></pre>
+<p>Open a pull request from the topic branch to <code>master</code>. Include the purpose, tests run, and any behavior or compatibility changes. Do not force-push a branch after others have based work on it.</p>
+<p>Use <code>fix/</code> for bug fixes, <code>docs/</code> for documentation, and <code>test/</code> for test-only changes. Keep changes focused and add tests for public behavior.</p>
+</article>
+<article id="git" class="document" aria-label="Git workflow"><h1>Git Workflow Guide</h1>
+<p>This guide explains a small, reviewable Git workflow for <code>dslearn</code>. Git records source history; npm publishing is a separate release action.</p>
+<h2>Pull-Request-Only Policy</h2>
+<p>Everyone except repository owner <code>Owaix</code> must send changes to the default branch through a pull request. <code>Owaix</code> is the only person allowed to bypass that requirement and push directly to the default branch, but should still prefer a pull request when review or discussion is useful. Contributors and maintainers other than <code>Owaix</code> must push work to a topic branch and merge through a pull request.</p>
+<p>GitHub enforces this policy with an active ruleset named <strong>Protect master with PRs</strong> targeting the default branch, currently <code>master</code>:</p>
+<ol>
+<li>The rule requires a pull request before merging.</li>
+<li><code>Owaix</code> is the only actor on the bypass list; all other users, including administrators, must use pull requests.</li>
+<li>Verify that a non-<code>Owaix</code> direct push to <code>master</code> is rejected.</li>
+</ol>
+<p>If the default branch is renamed, update the rule&#39;s target. See <a href="#contributing"><code>CONTRIBUTING.md</code></a> for the contributor workflow.</p>
+<h2>Check Repository State</h2>
+<pre><code class="language-sh">git status --short --branch
+git branch --show-current
+git log --oneline -5
+</code></pre>
+<p><code>status</code> shows changed and untracked files, <code>branch --show-current</code> prints the active branch, and <code>log</code> shows recent commits. Review status before staging so generated or unrelated files are not included by accident. <code>node_modules/</code>, <code>dist/</code>, coverage output, and tarballs are ignored by <code>.gitignore</code>.</p>
+<h2>Start a Change</h2>
+<p>If the project has not been initialized as a Git repository yet, create its first commit locally:</p>
+<pre><code class="language-sh">git init
+git add .
+git diff --cached
+git commit -m &quot;chore: initialize dslearn repository&quot;
+</code></pre>
+<p>This is appropriate for a new, clean repository; <code>.gitignore</code> keeps generated output and dependencies out of the commit. Do not push this commit directly to the default branch. Push it on a setup branch and merge it through a pull request. In an existing repository, stage only the files you intend to commit as shown below.</p>
+<p>Create a short-lived branch for each change:</p>
+<pre><code class="language-sh">git switch -c feat/describe-change
+</code></pre>
+<p>Use a descriptive branch name such as <code>feat/trie-prefix-search</code> or <code>fix/hash-table-resize</code>.</p>
+<h2>Stage and Commit</h2>
+<p>Run checks before committing:</p>
+<pre><code class="language-sh">npm run validate
+</code></pre>
+<p>Review the diff, stage only the intended files, then commit:</p>
+<pre><code class="language-sh">git diff
+git add README.md package.json package-lock.json CHANGELOG.md LICENSE .gitignore
+git add src tests docs examples benchmarks
+git add tsconfig.json vitest.config.ts eslint.config.js prettier.config.js
+git diff --cached
+git commit -m &quot;feat: describe the change&quot;
+</code></pre>
+<p><code>git add</code> stages changes for the next commit; <code>git diff --cached</code> lets you review exactly what is staged. Use a concise commit message describing the change, for example <code>fix: handle NaN graph vertices</code>.</p>
+<h2>Push and Review</h2>
+<p>If no remote is configured, add the repository URL first:</p>
+<pre><code class="language-sh">git remote add origin https://github.com/&lt;owner&gt;/dslearn.git
+git remote -v
+</code></pre>
+<p>Skip <code>remote add</code> when <code>origin</code> already exists; use <code>git remote -v</code> to inspect it.</p>
+<pre><code class="language-sh">git push -u origin feat/describe-change
+</code></pre>
+<p>The <code>-u</code> option sets the upstream branch so later pushes can use <code>git push</code>. Everyone except <code>Owaix</code> must open a pull request against <code>master</code> and include the behavior change, test results, and any compatibility impact. <code>Owaix</code> may push directly but should prefer a PR when collaboration is useful.</p>
+<h2>Release Tags</h2>
+<p>After a release has been reviewed and published, tag the release commit and push the tag:</p>
+<pre><code class="language-sh">git tag -a v1.0.0 -m &quot;Release dslearn 1.0.0&quot;
+git push origin v1.0.0
+</code></pre>
+<p>Tags mark Git history; they do not publish an npm package. <code>npm publish</code> is a separate external action documented in <a href="#publishing">the npm publishing guide</a>.</p>
+<h2>Useful Recovery Commands</h2>
+<pre><code class="language-sh">git diff                 # inspect unstaged edits
+git diff --cached        # inspect staged edits
+git restore --staged .   # unstage changes without deleting edits
+git switch main          # switch branches when the worktree permits it
+</code></pre>
+<p>Avoid <code>git reset --hard</code> and forced pushes unless the consequences are understood and the team explicitly approves them. Never discard another contributor&#39;s work to make a branch appear clean.</p>
+</article>
+<article id="publishing" class="document" aria-label="npm publishing"><h1>npm Publishing Guide</h1>
+<p>This guide prepares and publishes <code>dslearn</code>. The package is authored by <code>imowaix</code>; publishing requires an npm account that owns or has publish access to the package name. No publish command is run as part of normal validation.</p>
+<h2>Before Publishing</h2>
+<ol>
+<li><p>Confirm that <code>dslearn</code> is available or that your npm account has access:</p>
+<pre><code class="language-sh">npm view dslearn version
+</code></pre>
+<p>A <code>404 Not Found</code> means no public package currently resolves under that name. Availability can change before publication.</p>
+</li>
+<li><p>Use Node.js 20 or newer for the development scripts. The published library itself supports Node.js 18 or newer.</p>
+</li>
+<li><p>Install the locked dependencies and run all release checks:</p>
+<pre><code class="language-sh">npm ci
+npm run validate
+npm pack --dry-run
+</code></pre>
+<p>The <code>prepublishOnly</code> lifecycle also runs <code>npm run validate</code> before a publish.</p>
+</li>
+<li><p>Review the tarball contents. It should contain compiled files in <code>dist/</code>, package metadata, README, license, changelog, and the guides under <code>docs/</code>; it should not contain tests, development dependencies, or credentials.</p>
+</li>
+<li><p>Check the version in <code>package.json</code>. npm does not allow publishing a version that is already present. Update it before release and commit the version change through your usual Git review process.</p>
+</li>
+</ol>
+<h2>Authenticate and Publish</h2>
+<p>Authenticate interactively so credentials stay in npm&#39;s own prompt:</p>
+<pre><code class="language-sh">npm login
+npm whoami
+</code></pre>
+<p>When the account, name, version, and packed contents are confirmed, publish the public package:</p>
+<pre><code class="language-sh">npm publish --access public
+</code></pre>
+<p>This command publishes externally. Run it only when the release is approved. For a scoped public package, <code>--access public</code> is required; it is also safe to include for this unscoped package.</p>
+<p>Verify the published version and package metadata afterward:</p>
+<pre><code class="language-sh">npm view dslearn version
+npm view dslearn dist.tarball
+</code></pre>
+<h2>Release Notes</h2>
+<ul>
+<li>The package exports native ESM from <code>dist/index.js</code> and declarations from <code>dist/index.d.ts</code>.</li>
+<li><code>files</code> in <code>package.json</code> controls the package allowlist.</li>
+<li><code>npm pack --dry-run</code> previews the archive; <code>npm pack</code> creates a local archive but does not publish it.</li>
+<li>Never commit npm tokens or place them in the repository. Use npm&#39;s login flow and account-level two-factor authentication.</li>
+<li>If publication fails because the name is claimed or access is denied, do not change the package identity silently. Resolve ownership or choose a scoped name, then update imports and metadata consistently.</li>
+</ul>
+</article>
+<article id="changelog" class="document" aria-label="Changelog"><h1>Changelog</h1>
+<h2>1.0.2</h2>
+<ul>
+<li>Link the documentation website from the README and npm homepage.</li>
+</ul>
+<h2>1.0.1</h2>
+<ul>
+<li>Clarify the package introduction for beginners and link core data structure operations to hands-on use.</li>
+</ul>
+<h2>1.0.0</h2>
+<ul>
+<li>Initial release of the dslearn data structure collection.</li>
+</ul>
+</article>
+<article id="license" class="document" aria-label="License"><pre>MIT License
+
+Copyright (c) 2026 imowaix
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</pre></article>
+        <section id="about" class="document">
+          <p class="eyebrow">BEHIND THE PACKAGE</p>
+          <h1>imowaix</h1>
+          <div class="profile">
+            <img
+              src="https://github.com/Owaix.png?size=240"
+              alt="Owaix GitHub profile avatar"
+              width="120"
+              height="120"
+            />
+            <div>
+              <h2>Creator of dslearn</h2>
+              <p>
+                Maintained by imowaix, known as Owaix on GitHub. dslearn makes data structures
+                easier to explore through code. Start small, try a method, and connect the pieces
+                into something useful.
+              </p>
+            </div>
+          </div>
+          <h2>Contact me</h2>
+          <p>Questions, ideas, or a bug to share? Get in touch through GitHub.</p>
+          <div class="contact-links">
+            <a href="https://github.com/Owaix">GitHub profile ↗</a
+            ><a href="https://github.com/Owaix/dslearn/issues/new"
+              >Ask a question or report a bug ↗</a
+            ><a href="https://www.npmjs.com/package/dslearn">Package on npm ↗</a>
+          </div>
+        </section>
+        <footer class="page-footer">
+          <span>dslearn / by imowaix</span><a href="#license">MIT License</a
+          ><a href="https://github.com/Owaix/dslearn">View source ↗</a>
+        </footer>
+      </main>
+      <aside id="toc" aria-label="On this page"></aside>
+    </div>
+  </body>
+</html>
